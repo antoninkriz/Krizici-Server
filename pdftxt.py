@@ -14,19 +14,19 @@ from cStringIO import StringIO
 rng = [0, 1, 2]
 krizik = 'Vyšší odborná škola a Střední průmyslová škola elektrotechnická Františka Křižíka'
 files = ['./ucitele.pdf', './tridy.pdf', './ucebny.pdf']
-pattern = [krizik + " ([A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+ [A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+)", krizik + "(\n\n(\d[A-C])| (V\d))", "UČebna:  (.+)"]
+pattern = [krizik + " ([A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+ [A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+)",
+           krizik + "(\n\n(\d[A-C])| (V\d))", "UČebna:  (.+)"]
 
 
 def main():
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
 
-    result = []
+    result = [[],[],[]]
 
     for r in rng:
         device = TextConverter(rsrcmgr, retstr, codec='utf-8', laparams=LAParams())
         interpreter = PDFPageInterpreter(rsrcmgr, device)
-        result.append([])
         with file(files[r], 'r') as fp:
             for page in PDFPage.get_pages(fp, pagenos=set(), maxpages=0, password='', caching=True, check_extractable=True):
                 interpreter.process_page(page)
@@ -52,6 +52,8 @@ def main():
 
     with codecs.open('json.json', 'wb') as fp:
         fp.write(json_result)
+
+    print ("PDFs to JSON - SUCCESS")
 
     return
 
