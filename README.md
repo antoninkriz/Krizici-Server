@@ -1,2 +1,5 @@
 # Krizici-Server
-Bakalari - PDF timetables to JSON array of teachers/classrooms/classes and PNG with separate timetables of teachers/classrooms/classes
+Serverova strana pro Krizici-App 
+
+pdftxt.py - prevod PDF rozvrhu bakalaru na JSON seznam ucitelu, trid a uceben
+contxt.py - parsovani kontaktu ucitelu z skolakrizik.cz
