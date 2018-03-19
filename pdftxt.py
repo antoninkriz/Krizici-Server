@@ -14,7 +14,7 @@ from cStringIO import StringIO
 rng = [0, 1, 2]
 krizik = 'Vyšší odborná škola a Střední průmyslová škola elektrotechnická Františka Křižíka'
 files = ['./ucitele.pdf', './tridy.pdf', './ucebny.pdf']
-pattern = [krizik + " (\S+ \S+)",
+pattern = [krizik + " ((\S+ \S+)|(\S+))",
            krizik + "(\n\n(\d[A-C])| (V\d))", "UČebna:  (.+)"]
 
 
@@ -35,7 +35,7 @@ def main():
 
         for m in matched:
             if r == 0:
-                result[r].append(m)
+                result[r].append(m[0])
             elif r == 1:
                 if m[2] == '':
                     result[r].append(m[1])
