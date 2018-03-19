@@ -14,7 +14,7 @@ from cStringIO import StringIO
 rng = [0, 1, 2]
 krizik = 'Vyšší odborná škola a Střední průmyslová škola elektrotechnická Františka Křižíka'
 files = ['./ucitele.pdf', './tridy.pdf', './ucebny.pdf']
-pattern = [krizik + " ([A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+ [A-ZĚŠČŘŽÝÁÍÉÚŮ][a-zěščřžýáíéúů]+)",
+pattern = [krizik + " (\S+ \S+)",
            krizik + "(\n\n(\d[A-C])| (V\d))", "UČebna:  (.+)"]
 
 
